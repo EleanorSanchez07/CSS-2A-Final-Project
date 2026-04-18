@@ -1,19 +1,23 @@
 #include "./include/raylib/raylib-cpp.hpp"
+raylib::Window window(1280, 800, "Testing this!");
+
+#include "./include/GameObject.hpp"
+#include "./include/PhysicalGameObject.hpp"
+#include "./include/GlobalRefs.hpp"
+
 #include <iostream>
 
 //Basic structure taken from getting started guide 
 
 int main() {
-    raylib::Window window(1280, 800, "Testing this!");
     window.SetExitKey(0);
 
-    raylib::Image img = raylib::LoadImage("resources/glep.png");
-    raylib::Texture2D player = raylib::Texture2D(img);
-    player.width = 128;
-    player.height = 128;
+    std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
+    std::vector<PhysicalGameObject> worldTriggers = std::vector<PhysicalGameObject>();
+    std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
-    raylib::Vector2 position = raylib::Vector2(window.GetWidth() / 2 - player.GetWidth() / 2, window.GetHeight() / 2 - player.GetHeight() / 2);
-    raylib::Vector2 velocity = raylib::Vector2(0, 0);
+    PhysicalGameObject player = PhysicalGameObject(&TEX_PLAYER);
+    player.setPosition(raylib::Vector2(window.GetWidth() / 2 - player.getSize().x / 2, window.GetHeight() / 2 - player.getSize().y / 2));
 
     raylib::Color background = raylib::Color(255, 0, 0, 255);
     SetTargetFPS(60);
@@ -21,28 +25,9 @@ int main() {
     // Main game loop
     while (!window.ShouldClose()) {   //Check if close button pressed on window.
         BeginDrawing();
-        {
-            velocity = raylib::Vector2(0, 0);
-
-            if(IsKeyDown(KEY_W)) {
-                velocity.y = -10;
-            } else if (IsKeyDown(KEY_S)) {
-                velocity.y = 10;
+            { //empty scope between begin and end draw; makes code pretty :3
+                window.ClearBackground(background);
             }
-
-            if(IsKeyDown(KEY_A)) {
-                velocity.x = -10;
-            } else if (IsKeyDown(KEY_D)) {
-                velocity.x = 10;
-            }
-
-            velocity = velocity.Normalize() * 10;
-
-            position += velocity;
-
-            player.Draw(position); //Drawing "player" in center of screen.
-            window.ClearBackground(background); //Erases everything to draw the next frame.
-        } //Brackets to clearly indicate where the drawing starts and ends using a new scope.
         EndDrawing();
     }
  
