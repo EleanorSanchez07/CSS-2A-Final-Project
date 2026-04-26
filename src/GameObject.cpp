@@ -23,6 +23,8 @@ void GameObject::setSize(raylib::Vector2 size) {
 }
 
 void GameObject::draw() {
+    this -> texture -> width = this -> size.x;
+    this -> texture -> height = this -> size.y;
     this -> texture -> Draw(this -> position);
 }
 
