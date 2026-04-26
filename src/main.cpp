@@ -26,6 +26,8 @@ int main() {
     while (!window.ShouldClose()) {   //Check if close button pressed on window.
         BeginDrawing();
             { //empty scope between begin and end draw; makes code pretty :3
+                player.tick();
+
                 window.ClearBackground(background);
             }
         EndDrawing();
