@@ -3,6 +3,7 @@ raylib::Window window(1280, 800, "Testing this!");
 
 #include "./include/GameObject.hpp"
 #include "./include/PhysicalGameObject.hpp"
+#include "./include/Player.hpp"
 #include "./include/GlobalRefs.hpp"
 
 #include <iostream>
@@ -16,8 +17,8 @@ int main() {
     std::vector<PhysicalGameObject> worldTriggers = std::vector<PhysicalGameObject>();
     std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
-    PhysicalGameObject player = PhysicalGameObject(&TEX_PLAYER);
-    player.setPosition(raylib::Vector2(window.GetWidth() / 2 - player.getSize().x / 2, window.GetHeight() / 2 - player.getSize().y / 2));
+    Player player = Player(&TEX_PLAYER);
+    player.setPosition(raylib::Vector2(window.GetWidth() / 2 - 32, window.GetHeight() / 2 - 32));
 
     raylib::Color background = raylib::Color(255, 0, 0, 255);
     SetTargetFPS(60);
