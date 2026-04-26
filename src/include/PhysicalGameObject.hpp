@@ -12,7 +12,7 @@ class PhysicalGameObject: public GameObject {
         void setVelocityY(double velocity);
 
         raylib::Vector2 getVelocity();
-    private:
+    protected:
         raylib::Vector2 velocity;
         raylib::Rectangle collisionShape;
 };
