@@ -1,11 +1,16 @@
 #include "./include/Player.hpp"
 
+const float INTERACTION_RADIUS = 180.0;
+
 Player::Player(raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
+    this -> size = raylib::Vector2(128, 128);
+    this -> interactionCircle = Circle(this -> position, INTERACTION_RADIUS);
     this -> name = "Hero";
-    this -> size = raylib::Vector2(64, 64);
 }
 
 Player::Player(std::string name, raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
+    this -> size = raylib::Vector2(128, 128);
+    this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
     this -> name = name;
 }
 
@@ -50,9 +55,10 @@ void Player::tick() {
     this -> handleInput();
 
     this -> setPosition(this -> getPosition() + this -> velocity);
+    this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
     this -> collisionShape.SetPosition(this -> getPosition());
 
-    this -> position.DrawCircle(10);
+    // this -> position.DrawCircle(10);
     this -> draw();
 }
 

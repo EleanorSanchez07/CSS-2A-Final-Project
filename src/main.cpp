@@ -1,5 +1,5 @@
 #include "./include/raylib/raylib-cpp.hpp"
-raylib::Window window(1280, 800, "Testing this!");
+raylib::Window window(1280, 800, "Untitled Spooky Game");
 
 #include "./include/GameObject.hpp"
 #include "./include/PhysicalGameObject.hpp"
@@ -18,9 +18,9 @@ int main() {
     std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
     Player player = Player(&TEX_PLAYER);
-    player.setPosition(raylib::Vector2(window.GetWidth() / 2 - 32, window.GetHeight() / 2 - 32));
+    player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
 
-    raylib::Color background = raylib::Color(255, 0, 0, 255);
+    raylib::Color background = raylib::Color(128, 128, 128, 255);
     SetTargetFPS(60);
     
     // Main game loop
