@@ -63,15 +63,15 @@ void Player::tick() {
 }
 
 void Player::handleInput() {
-    if(raylib::Keyboard::IsKeyDown(KEY_W)) {
+    if(raylib::Keyboard::IsKeyDown(KEY_W) || raylib::Keyboard::IsKeyDown(KEY_UP)) {
         this -> setVelocityY(-10);
-    } else if(raylib::Keyboard::IsKeyDown(KEY_S)) {
+    } else if(raylib::Keyboard::IsKeyDown(KEY_S) || raylib::Keyboard::IsKeyDown(KEY_DOWN)) {
         this -> setVelocityY(10);
     }
 
-    if(raylib::Keyboard::IsKeyDown(KEY_A)) {
+    if(raylib::Keyboard::IsKeyDown(KEY_A) || raylib::Keyboard::IsKeyDown(KEY_LEFT)) {
         this -> setVelocityX(-10);
-    } else if(raylib::Keyboard::IsKeyDown(KEY_D)) {
+    } else if(raylib::Keyboard::IsKeyDown(KEY_D) || raylib::Keyboard::IsKeyDown(KEY_RIGHT)) {
         this -> setVelocityX(10);
     }
 }
