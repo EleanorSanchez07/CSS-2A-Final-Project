@@ -54,7 +54,5 @@ class Player: public PhysicalGameObject {
         Circle interactionCircle;
         std::string name;
         bool alive, hasWonState;
-        //PLACEHOLDER: Item items[4] = {};
-        
-
+        std::string items[4];
 };

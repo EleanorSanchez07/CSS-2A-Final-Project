@@ -6,12 +6,22 @@ Player::Player(raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
     this -> size = raylib::Vector2(128, 128);
     this -> interactionCircle = Circle(this -> position, INTERACTION_RADIUS);
     this -> name = "Hero";
+
+    for(std::string str : this -> items) str = "";
+
+    this -> alive = true;
+    this -> hasWonState = false;
 }
 
 Player::Player(std::string name, raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
     this -> size = raylib::Vector2(128, 128);
     this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
     this -> name = name;
+
+    for(std::string str : this -> items) str = "";
+
+    this -> alive = true;
+    this -> hasWonState = false;
 }
 
 std::string Player::getName() {
