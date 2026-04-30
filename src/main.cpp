@@ -17,10 +17,10 @@ int main() {
     std::vector<PhysicalGameObject> worldTriggers = std::vector<PhysicalGameObject>();
     std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
-    Player player = Player(&TEX_PLAYER);
+    Player player = Player(&TEX_PLAYER, &TEX_DARKNESS);
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
 
-    raylib::Color background = raylib::Color(128, 128, 128, 255);
+    raylib::Color background = raylib::Color(0, 0, 0, 255);
     SetTargetFPS(60);
     
     // Main game loop

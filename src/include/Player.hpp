@@ -32,25 +32,26 @@ struct Circle {
 
 class Player: public PhysicalGameObject {
     public:
-        Player(raylib::Texture2D* _texture);
-        Player(std::string name, raylib::Texture2D* _texture);
+        Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness);
+        Player(std::string name, raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness);
 
         std::string getName();
         bool getAlive();
         bool getWonState();
-        //PLACEHOLDER: Item getItemByIndex(int index);
+        std::string getItemByIndex(int index);
 
         void setName(std::string name);
         void setAlive(bool alive);
         void setHasWonState(bool hasWonState);
-        //PLACEHOLDER: void setItemByIndex(int index, Item item);
-        //PLACEHOLDER: void setItemByIndex(Item item, int index);
+        void setItemByIndex(int index, std::string item);
+        void setItemByIndex(std::string item, int index);
 
         void tick();
         void handleInput();
-        //PLACEHOLDER: void grabItem(Item& item);
+        void draw();
         
     private:
+        raylib::Texture2D* darknessTexture;
         Circle interactionCircle;
         std::string name;
         bool alive, hasWonState;

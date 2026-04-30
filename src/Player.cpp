@@ -2,7 +2,7 @@
 
 const float INTERACTION_RADIUS = 180.0;
 
-Player::Player(raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
+Player::Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness): PhysicalGameObject(_texture) {
     this -> size = raylib::Vector2(128, 128);
     this -> interactionCircle = Circle(this -> position, INTERACTION_RADIUS);
     this -> name = "Hero";
@@ -11,9 +11,11 @@ Player::Player(raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
 
     this -> alive = true;
     this -> hasWonState = false;
+
+    this -> darknessTexture = _texture_darkness;
 }
 
-Player::Player(std::string name, raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
+Player::Player(std::string name, raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness): PhysicalGameObject(_texture) {
     this -> size = raylib::Vector2(128, 128);
     this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
     this -> name = name;
@@ -52,13 +54,20 @@ void Player::setHasWonState(bool hasWonState) {
     this -> hasWonState = hasWonState;
 }
 
-/*PLACEHOLDER: void Player::setItemByIndex(int index, Item item) {
+void Player::setItemByIndex(int index, std::string item) {
     this -> items[index] = item;
-}*/
+}
 
-/*PLACEHOLDER: void setItemByIndex(Item item, int index) {
+void Player::setItemByIndex(std::string item, int index) {
     this -> items[index] = item;
-}*/
+}
+
+void Player::draw() {
+    GameObject::draw();
+
+    raylib::Vector2 darknessPosition = raylib::Vector2(this -> position) - raylib::Vector2(1536 - 64, 1024 - 64);
+    darknessTexture -> Draw(darknessPosition);
+}
 
 void Player::tick() {
     this -> setVelocity(raylib::Vector2(0, 0));
@@ -85,7 +94,3 @@ void Player::handleInput() {
         this -> setVelocityX(10);
     }
 }
-
-/*PLACEHOLDER: void grabItem(Item& item) {
-
-}*/
