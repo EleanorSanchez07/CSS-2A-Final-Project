@@ -1,28 +1,23 @@
 #pragma once
-#include "raylib.h"
+
 #include <string>
+#include "PhysicalGameObject.h"
+#include "Player.h"
+
 using namespace std;
 
-class Item
+class Item : public PhysicalGameObject
 {
 private:
-    string name;
-    int value;
-    Vector2 position;
+    string itemName;
     bool collected;
 
 public:
-    // constructors
     Item();
-    Item(string name, int value, float x, float y);
+    Item(string name);
 
-    // functions
-    void draw();
-    void collect();
+    void collect(Player& player);
 
-    // getters
-    bool isCollected();
-    Vector2 getPosition();
     string getName();
+    bool isCollected();
 };
-

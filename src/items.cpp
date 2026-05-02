@@ -1,51 +1,36 @@
-#include "Item.h"
+#include "items.h"
 
-// default constructor
-Item::Item()
+Item::Item() : PhysicalGameObject()
 {
-    name = "Item";
-    value = 0;
-    position = {0, 0};
+    itemName = "";
     collected = false;
 }
 
-// custom constructor
-Item::Item(string name, int value, float x, float y)
+Item::Item(string name) : PhysicalGameObject()
 {
-    this->name = name;
-    this->value = value;
-    position = {x, y};
+    itemName = name;
     collected = false;
 }
 
-// draw item
-void Item::draw()
+string Item::getName()
 {
-    if (!collected)
-    {
-        DrawCircle(position.x, position.y, 15, YELLOW);
-    }
+    return itemName;
 }
 
-// mark as collected
-void Item::collect()
-{
-    collected = true;
-}
-
-// getters
 bool Item::isCollected()
 {
     return collected;
 }
 
-Vector2 Item::getPosition()
+void Item::collect(Player& player)
 {
-    return position;
+    for (int i = 0; i < 4; i++)
+    {
+        if (player.items[i] == "")
+        {
+            player.items[i] = itemName;
+            collected = true;
+            return;
+        }
+    }
 }
-
-string Item::getName()
-{
-    return name;
-}
-
