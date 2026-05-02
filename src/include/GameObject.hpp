@@ -15,7 +15,7 @@ class GameObject {
         void draw();
 
         // void Update();
-    private:
+    protected:
         raylib::Texture2D* texture;
         raylib::Vector2 position;
         raylib::Vector2 size;
