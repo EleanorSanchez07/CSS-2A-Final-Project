@@ -10,8 +10,10 @@ class PhysicalGameObject: public GameObject {
         void setVelocity(raylib::Vector2 velocity);
         void setVelocityX(double velocity);
         void setVelocityY(double velocity);
+        void setCollisionShape(raylib::Rectangle collisionShape);
 
         raylib::Vector2 getVelocity();
+        raylib::Rectangle getCollisionShape();
     protected:
         raylib::Vector2 velocity;
         raylib::Rectangle collisionShape;
