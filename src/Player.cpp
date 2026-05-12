@@ -15,6 +15,8 @@ Player::Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness
     this -> alive = true;
     this -> hasWonState = false;
 
+    this -> health = 20;
+
     this -> darknessTexture = _texture_darkness;
 }
 
@@ -29,6 +31,10 @@ bool Player::getWonState() {
 /*PLACEHOLDER: Item& Player::getItemByIndex(int index) {
     return this -> items[index];
 }*/
+
+float Player::getHealth() {
+    return this -> health;
+}
 
 void Player::setAlive(bool alive) {
     this -> alive = alive;
@@ -46,6 +52,14 @@ void Player::setItemByIndex(std::string item, int index) {
     this -> items[index] = item;
 }
 
+void Player::setHealth(float health) {
+    this -> health = health;
+}
+
+void Player::changeHealth(float healthEffect) {
+    this -> health += healthEffect;
+}
+
 void Player::draw() {
     GameObject::draw();
 
@@ -56,6 +70,10 @@ void Player::draw() {
 }
 
 void Player::tick() {
+    if(this -> health <= 0) {
+        reset();
+    }
+
     this -> setVelocity(raylib::Vector2(0, 0));
     this -> handleInput();
     this -> checkTriggers();

@@ -39,11 +39,14 @@ class Player: public PhysicalGameObject {
         bool getAlive();
         bool getWonState();
         std::string getItemByIndex(int index);
+        float getHealth();
 
         void setAlive(bool alive);
         void setHasWonState(bool hasWonState);
         void setItemByIndex(int index, std::string item);
         void setItemByIndex(std::string item, int index);
+        void setHealth(float health);
+        void changeHealth(float healthEffect);
 
         void tick();
         void checkTriggers();
@@ -55,4 +58,5 @@ class Player: public PhysicalGameObject {
         Circle interactionCircle;
         std::string name, items[4];
         bool alive, hasWonState;
+        float health;
 };

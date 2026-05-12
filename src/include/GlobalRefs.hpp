@@ -17,3 +17,5 @@ extern int numTriggersInWorld;
 extern Trigger* worldTriggers[maxTriggersInWorld];
 
 extern std::vector<PhysicalGameObject> worldEnemies;
+
+extern void reset();

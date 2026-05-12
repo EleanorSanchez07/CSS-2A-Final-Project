@@ -23,14 +23,16 @@ Trigger* worldTriggers[maxTriggersInWorld];
 
 std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
+Player player;
+
 int main() {
     window.SetExitKey(0);
     
-    Player player = Player(&TEX_PLAYER, &TEX_DARKNESS);
+    player = Player(&TEX_PLAYER, &TEX_DARKNESS);
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
 
-    worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
-    numTriggersInWorld++;
+    // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
+    // numTriggersInWorld++;
 
     raylib::Color background = raylib::Color(0, 0, 0, 255);
     SetTargetFPS(60);
@@ -51,4 +53,20 @@ int main() {
     }
 
     return 0;
+}
+
+void reset() {
+    for(int i = 0; i < numTriggersInWorld; i++) {
+        delete worldTriggers[i];
+    }
+    numTriggersInWorld = 0;
+
+    player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
+    player.setHealth(10);
+    worldObstacles = std::vector<PhysicalGameObject>();
+    numTriggersInWorld = 0;
+    worldEnemies = std::vector<PhysicalGameObject>();
+    
+    // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
+    // numTriggersInWorld++;
 }
