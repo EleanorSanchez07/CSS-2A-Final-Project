@@ -10,6 +10,9 @@ extern raylib::Texture2D TEST_BG = raylib::Texture2D("resources/image2.png"); //
 
 //create basic templates for room items
 Room demoLevel[6][6];
+int lWidth = 6;
+int lHeight = 6;
+
 // set up rooms
 int loc[2];
 
