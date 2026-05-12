@@ -6,7 +6,7 @@ Room::Room(){
     exists = false;
 }
 
-Room::Room(vector<PhysicalGameObject> worldObstacles, RoomChangeTrigger *wt[20], 
+Room::Room(vector<PhysicalGameObject> worldObstacles, RoomChangeTrigger *wt[4], 
 vector<Enemy> worldEnemies, vector<Item> worldObjects){
     exists = true;
     this->worldObstacles = worldObstacles;
@@ -17,8 +17,8 @@ vector<Enemy> worldEnemies, vector<Item> worldObjects){
     playerPos = raylib::Vector2(0, 0);
 }
 
-void Room::setWorldTriggers(RoomChangeTrigger* wt[20]){
-    for(int i = 0; i<20; i++){
+void Room::setWorldTriggers(RoomChangeTrigger* wt[4]){
+    for(int i = 0; i<4; i++){
         *worldTriggers[i] = *wt[i];
     }
 }

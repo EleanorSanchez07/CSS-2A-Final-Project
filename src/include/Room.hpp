@@ -10,7 +10,7 @@ using namespace std;
 class Room{
     public:
         Room();
-        Room(vector<PhysicalGameObject> worldObstacles, RoomChangeTrigger *worldTriggers[20], 
+        Room(vector<PhysicalGameObject> worldObstacles, RoomChangeTrigger *worldTriggers[4], 
             vector<Enemy> worldEnemies, vector<Item> worldObjects);
         void addObstacle(PhysicalGameObject ob);
         void addEnemy(Enemy en);
@@ -22,11 +22,11 @@ class Room{
         bool Exists();
         void removeEnemy(Enemy en);
         void removeItem(Item i);
-        void setWorldTriggers(RoomChangeTrigger* wt[20]);
+        void setWorldTriggers(RoomChangeTrigger* wt[4]);
     private:
         bool exists;
         std::vector<PhysicalGameObject> worldObstacles;
-        RoomChangeTrigger* worldTriggers[20];
+        RoomChangeTrigger* worldTriggers[4];
         std::vector<Enemy> worldEnemies;
         std::vector<Item> worldObjects;
         raylib::Vector2 playerPos;
