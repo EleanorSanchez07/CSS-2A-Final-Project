@@ -1,14 +1,30 @@
 #include "./include/raylib/raylib-cpp.hpp"
-raylib::Window window(1280, 800, "Testing this!");
+raylib::Window window(1280, 800, "Untitled Spooky Game");
 
 #include "./include/GameObject.hpp"
 #include "./include/PhysicalGameObject.hpp"
 #include "./include/Room.hpp"
+#include "./include/Trigger.hpp"
+#include "./include/DisplayTextTrigger.hpp"
+#include "./include/Player.hpp"
 #include "./include/GlobalRefs.hpp"
 
 #include <iostream>
+#include <memory>
 
-//Basic structure taken from getting started guide 
+raylib::Texture2D TEX_NOTHING = raylib::Texture2D("resources/transparent.png");
+
+raylib::Texture2D TEX_PLAYER = raylib::Texture2D("resources/glep.png");
+raylib::Texture2D TEX_DARKNESS = raylib::Texture2D("resources/darkness.png");
+
+std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
+
+int numTriggersInWorld = 0;
+Trigger* worldTriggers[maxTriggersInWorld];
+
+std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
+
+Player player;
 
 void enterRoom(Room r);
 void leaveRoom(Room& r);
@@ -20,12 +36,17 @@ std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>()
 int main() {
 
     window.SetExitKey(0);
+    
+    player = Player(&TEX_PLAYER, &TEX_DARKNESS);
+    player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
 
 
-    PhysicalGameObject player = PhysicalGameObject(&TEX_PLAYER);
-    player.setPosition(raylib::Vector2(window.GetWidth() / 2 - player.getSize().x / 2, window.GetHeight() / 2 - player.getSize().y / 2));
+    //PhysicalGameObject player = PhysicalGameObject(&TEX_PLAYER);
+    //player.setPosition(raylib::Vector2(window.GetWidth() / 2 - player.getSize().x / 2, window.GetHeight() / 2 - player.getSize().y / 2));
+    // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
+    // numTriggersInWorld++;
 
-    raylib::Color background = raylib::Color(255, 0, 0, 255);
+    raylib::Color background = raylib::Color(0, 0, 0, 255);
     SetTargetFPS(60);
     loc[0]=3;
     loc[1]=3;
@@ -33,14 +54,20 @@ int main() {
     // Main game loop
     while (!window.ShouldClose()) {   //Check if close button pressed on window.
         BeginDrawing();
-            { //empty scope between begin and end draw; makes code pretty :3
+            { //empty scope between begin and end draw; makes code prettier :3
+                player.tick();
+
                 window.ClearBackground(background);
                 player.tick();
                 demoLevel[loc[0]][loc[1]].tick();
             }
         EndDrawing();
     }
- 
+    
+    for(int i = 0; i < numTriggersInWorld; i++) {
+        delete worldTriggers[i];
+    }
+
     return 0;
 }
 
@@ -61,3 +88,18 @@ void leaveRoom(Room& r){
     worldEnemies = std::vector<PhysicalGameObject>();
 }
 */
+void reset() {
+    for(int i = 0; i < numTriggersInWorld; i++) {
+        delete worldTriggers[i];
+    }
+    numTriggersInWorld = 0;
+
+    player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
+    player.setHealth(10);
+    worldObstacles = std::vector<PhysicalGameObject>();
+    numTriggersInWorld = 0;
+    worldEnemies = std::vector<PhysicalGameObject>();
+    
+    // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
+    // numTriggersInWorld++;
+}

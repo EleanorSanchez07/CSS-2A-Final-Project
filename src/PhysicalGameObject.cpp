@@ -8,6 +8,7 @@ PhysicalGameObject::PhysicalGameObject(raylib::Texture2D* _texture): GameObject(
 void PhysicalGameObject::tick() {
     this -> setPosition(this -> getPosition() + this -> velocity);
     this -> collisionShape.SetPosition(this -> getPosition());
+    this -> collisionShape.SetSize(this -> size);
 
     this -> draw();
 }
@@ -24,6 +25,10 @@ void PhysicalGameObject::setVelocityY(double velocity) {
     this -> velocity.y = velocity;
 }
 
+void PhysicalGameObject::setCollisionShape(raylib::Rectangle collisionShape) {
+    this -> collisionShape = collisionShape;
+}
+
 raylib::Vector2 PhysicalGameObject::getVelocity() {
     return this -> velocity;
 }
@@ -32,4 +37,7 @@ bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two){
     // this is just to get it to shut up, this needs to be implemented for
     // the enemy class
     return true;
+}
+raylib::Rectangle PhysicalGameObject::getCollisionShape() {
+    return this -> collisionShape;
 }
