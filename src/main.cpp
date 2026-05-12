@@ -11,18 +11,14 @@ raylib::Window window(1280, 800, "Testing this!");
 //Basic structure taken from getting started guide 
 
 void enterRoom(Room r);
-void leaveRoom();
+void leaveRoom(Room& r);
 
 std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
 std::vector<PhysicalGameObject> worldTriggers = std::vector<PhysicalGameObject>();
 std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
 int main() {
-    /*
-    //theoretical level setup
-    Room level1[10][10];
-    level1[5][5] = Room(true);
-    */
+
     window.SetExitKey(0);
 
 
@@ -31,12 +27,16 @@ int main() {
 
     raylib::Color background = raylib::Color(255, 0, 0, 255);
     SetTargetFPS(60);
+    loc[0]=3;
+    loc[1]=3;
     
     // Main game loop
     while (!window.ShouldClose()) {   //Check if close button pressed on window.
         BeginDrawing();
             { //empty scope between begin and end draw; makes code pretty :3
                 window.ClearBackground(background);
+                player.tick();
+                demoLevel[loc[0]][loc[1]].tick();
             }
         EndDrawing();
     }
@@ -44,16 +44,20 @@ int main() {
     return 0;
 }
 
+/*
+//no longer needed
 void enterRoom(Room r){
     // pulls out the vectors
     worldObstacles = r.Obstacles();
     worldTriggers = r.Triggers();
     worldEnemies = r.Enemies();
 }
-void leaveRoom(){
+void leaveRoom(Room& r){
     // unsure if this is neccesary
     // sets the vectors to empty vectors
+    r.setEnemies(worldEnemies);
     worldObstacles = std::vector<PhysicalGameObject>();
     worldTriggers = std::vector<PhysicalGameObject>();
     worldEnemies = std::vector<PhysicalGameObject>();
 }
+*/

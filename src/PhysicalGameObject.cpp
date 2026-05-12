@@ -27,3 +27,9 @@ void PhysicalGameObject::setVelocityY(double velocity) {
 raylib::Vector2 PhysicalGameObject::getVelocity() {
     return this -> velocity;
 }
+
+bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two){
+    // this is just to get it to shut up, this needs to be implemented for
+    // the enemy class
+    return true;
+}

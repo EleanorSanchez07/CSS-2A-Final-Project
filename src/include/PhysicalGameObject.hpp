@@ -11,6 +11,8 @@ class PhysicalGameObject: public GameObject {
         void setVelocityX(double velocity);
         void setVelocityY(double velocity);
 
+
+        friend bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two);
         raylib::Vector2 getVelocity();
     private:
         raylib::Vector2 velocity;
