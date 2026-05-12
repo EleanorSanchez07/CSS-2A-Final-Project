@@ -1,4 +1,4 @@
-#include "items.h"
+#include "Items.h"
 
 // default constructor
 Item::Item(raylib::Texture2D* texture)

@@ -21,9 +21,9 @@ Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player)
 	float playerPosition = 0.0;
 	enemyName = "";
 }
-Enemy::Status(bool alive)
+void Enemy::status(bool alive)
 {
-	this.player.setAlive(alive);
+	this->player.setAlive(alive);
 }
 void Enemy::findPlayer(Vector2 playerPosition)
 {
