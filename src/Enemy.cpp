@@ -1,12 +1,7 @@
 #include "./include/raylib/raylib-cpp.hpp"
 #include "./include/Enemy.h"
-<<<<<<< HEAD
-#include "../Player.hpp"
-#include "./Player.cpp"
-=======
 #include "Player.hpp"
 #include "Player.cpp"
->>>>>>> 553a97b1ffcce11c65e49fc9162f68258075df98
 #include <iostream>
 using namespace std;
 
@@ -82,15 +77,11 @@ void Enemy::setEnemyPosition(Vector2 enemyPosition)
 {
 	this->enemyPosition = enemyPosition;
 }
-<<<<<<< HEAD
 void Enemy::setTargetPosition(Vector2 targetPostion)
 {
 	this->targetPosition = targetPostion;
 }
 Vector2 Enemy::getPlayerPostion() const 
-=======
-Vector2 Enemy::getPlayerPosition() const
->>>>>>> 553a97b1ffcce11c65e49fc9162f68258075df98
 {
 	return playerPosition;
 }
@@ -102,11 +93,7 @@ double Enemy::getSpeed() const
 {
 	return speed;
 }
-<<<<<<< HEAD
 double Enemy::getDmg() const 
-=======
-double Enemy::getDmg()const
->>>>>>> 553a97b1ffcce11c65e49fc9162f68258075df98
 {
 	return dmg;
 }
