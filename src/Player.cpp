@@ -5,7 +5,22 @@
 
 const float INTERACTION_RADIUS = 180.0;
 
-Player::Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness): PhysicalGameObject(_texture) {
+// Player::Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness): PhysicalGameObject(_texture) {
+//     this -> size = raylib::Vector2(128, 128);
+//     this -> collisionShape.SetSize(this -> size);
+//     this -> interactionCircle = Circle(this -> position, INTERACTION_RADIUS);
+
+//     for(std::string str : this -> items) str = "";
+
+//     this -> alive = true;
+//     this -> hasWonState = false;
+
+//     this -> health = 20;
+
+//     this -> darknessTexture = _texture_darkness;
+// }
+
+Player::Player(): PhysicalGameObject(&TEX_PLAYER) {
     this -> size = raylib::Vector2(128, 128);
     this -> collisionShape.SetSize(this -> size);
     this -> interactionCircle = Circle(this -> position, INTERACTION_RADIUS);
@@ -17,7 +32,7 @@ Player::Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness
 
     this -> health = 20;
 
-    this -> darknessTexture = _texture_darkness;
+    this -> darknessTexture = &TEX_DARKNESS;
 }
 
 bool Player::getAlive() {

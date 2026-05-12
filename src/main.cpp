@@ -37,7 +37,6 @@ int main() {
 
     window.SetExitKey(0);
     
-    player = Player(&TEX_PLAYER, &TEX_DARKNESS);
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
 
 
@@ -58,7 +57,6 @@ int main() {
                 player.tick();
 
                 window.ClearBackground(background);
-                player.tick();
                 demoLevel[loc[0]][loc[1]].tick();
             }
         EndDrawing();

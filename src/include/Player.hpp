@@ -35,6 +35,7 @@ struct Circle {
 class Player: public PhysicalGameObject {
     public:
         Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness);
+        Player();
 
         bool getAlive();
         bool getWonState();
