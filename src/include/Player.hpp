@@ -2,7 +2,6 @@
 #include "./PhysicalGameObject.hpp"
 #include "./Trigger.hpp"
 #include <memory>
-//PLACEHOLDER: #include "./Item.hpp"
 
 struct Circle {
     double x, y, radius;
@@ -48,6 +47,8 @@ class Player: public PhysicalGameObject {
         void setItemByIndex(std::string item, int index);
         void setHealth(float health);
         void changeHealth(float healthEffect);
+
+        void addItemToInventory(std::string item);
 
         void tick();
         void checkTriggers();
