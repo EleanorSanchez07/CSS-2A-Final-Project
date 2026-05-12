@@ -20,7 +20,7 @@ public:
 	void setEnemyPosition(Vector2 enemyPosition);
 	string getEnemyName() const;
 	double getSpeed() const;
-	double getdmg() const;
+	double getDmg() const;
 	//Also subject to change
 	int getPlayerPosition()const;
 	double getEnemyPosition();

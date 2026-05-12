@@ -6,8 +6,8 @@ Room::Room(){
     exists = false;
 }
 
-Room::Room(vector<PhysicalGameObject> worldObstacles, PhysicalGameObject *wt[20], 
-vector<PhysicalGameObject> worldEnemies, vector<PhysicalGameObject> worldObjects){
+Room::Room(vector<PhysicalGameObject> worldObstacles, RoomChangeTrigger *wt[20], 
+vector<Enemy> worldEnemies, vector<Item> worldObjects){
     exists = true;
     this->worldObstacles = worldObstacles;
     setWorldTriggers(wt);
@@ -17,7 +17,7 @@ vector<PhysicalGameObject> worldEnemies, vector<PhysicalGameObject> worldObjects
     playerPos = raylib::Vector2(0, 0);
 }
 
-void Room::setWorldTriggers(PhysicalGameObject* wt[20]){
+void Room::setWorldTriggers(RoomChangeTrigger* wt[20]){
     for(int i = 0; i<20; i++){
         *worldTriggers[i] = *wt[i];
     }
@@ -27,7 +27,7 @@ void Room::addObstacle(PhysicalGameObject ob){
     worldObstacles.push_back(ob);
 }
 
-void Room::addEnemy(PhysicalGameObject en){
+void Room::addEnemy(Enemy en){
     worldEnemies.push_back(en);
 }
 
@@ -35,13 +35,12 @@ std::vector<PhysicalGameObject> Room::Obstacles(){
     return worldObstacles;
 }
 
-/*PhysicalGameObject& Room::Triggers(){
+RoomChangeTrigger** Room::Triggers(){
     return worldTriggers;
 }
-// needs to be functional but ughhh
-*/
 
-std::vector<PhysicalGameObject> Room::Enemies(){
+
+std::vector<Enemy> Room::Enemies(){
     return worldEnemies;
 }
 
@@ -50,22 +49,19 @@ raylib::Vector2 Room::setPlayerPosition(raylib::Vector2 pPos){
 }
 
 void Room::tick(){
-    for(int i = 0; i<20; i++){
-        worldTriggers[i]->tick();
-    }
     for(PhysicalGameObject ob : worldObstacles){
         ob.tick();
     }
-    for(PhysicalGameObject ob : worldEnemies){
+    for(Enemy ob : worldEnemies){
         ob.tick();
     }
-    for(PhysicalGameObject ob : worldObjects){
+    for(Item ob : worldObjects){
         ob.tick();
     }
 }
 
-void Room::removeEnemy(PhysicalGameObject en){
-    for (std::vector<PhysicalGameObject>::iterator it = worldEnemies.begin(); it != worldEnemies.end();)
+void Room::removeEnemy(Enemy en){
+    for (std::vector<Enemy>::iterator it = worldEnemies.begin(); it != worldEnemies.end();)
     {
         if (*it == en)
             it = worldEnemies.erase(it);

@@ -74,9 +74,9 @@ void Enemy::setPlayerPosition(int playerPosition)
 }
 void Enemy::setEnemyPosition(Vector2 enemyPosition) 
 {
-	this->ememyPosition = enemyPosition;
+	this->enemyPosition = enemyPosition;
 }
-int Enemy::getPlayerPosition() const
+Vector2 Enemy::getPlayerPosition() const
 {
 	return playerPosition;
 }
@@ -84,11 +84,11 @@ string Enemy::getEnemyName() const
 {
 	return EnemyName;
 }
-string Enemy::getSpeed() const
+double Enemy::getSpeed() const
 {
 	return speed;
 }
-string Enemy::getDmg()const
+double Enemy::getDmg()const
 {
 	return dmg;
 }
