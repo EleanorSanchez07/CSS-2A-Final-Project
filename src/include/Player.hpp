@@ -1,5 +1,7 @@
 #pragma once
 #include "./PhysicalGameObject.hpp"
+#include "./Trigger.hpp"
+#include <memory>
 //PLACEHOLDER: #include "./Item.hpp"
 
 struct Circle {
@@ -32,27 +34,29 @@ struct Circle {
 
 class Player: public PhysicalGameObject {
     public:
-        Player(raylib::Texture2D* _texture);
-        Player(std::string name, raylib::Texture2D* _texture);
+        Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness);
 
-        std::string getName();
         bool getAlive();
         bool getWonState();
-        //PLACEHOLDER: Item getItemByIndex(int index);
+        std::string getItemByIndex(int index);
+        float getHealth();
 
-        void setName(std::string name);
         void setAlive(bool alive);
         void setHasWonState(bool hasWonState);
-        //PLACEHOLDER: void setItemByIndex(int index, Item item);
-        //PLACEHOLDER: void setItemByIndex(Item item, int index);
+        void setItemByIndex(int index, std::string item);
+        void setItemByIndex(std::string item, int index);
+        void setHealth(float health);
+        void changeHealth(float healthEffect);
 
         void tick();
+        void checkTriggers();
         void handleInput();
-        //PLACEHOLDER: void grabItem(Item& item);
+        void draw();
         
     private:
+        raylib::Texture2D* darknessTexture;
         Circle interactionCircle;
-        std::string name;
+        std::string name, items[4];
         bool alive, hasWonState;
-        std::string items[4];
+        float health;
 };

@@ -1,31 +1,23 @@
+#include <iostream>
+#include <typeinfo>
+#include "./include/GlobalRefs.hpp"
 #include "./include/Player.hpp"
 
 const float INTERACTION_RADIUS = 180.0;
 
-Player::Player(raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
+Player::Player(raylib::Texture2D* _texture, raylib::Texture2D* _texture_darkness): PhysicalGameObject(_texture) {
     this -> size = raylib::Vector2(128, 128);
+    this -> collisionShape.SetSize(this -> size);
     this -> interactionCircle = Circle(this -> position, INTERACTION_RADIUS);
-    this -> name = "Hero";
 
     for(std::string str : this -> items) str = "";
 
     this -> alive = true;
     this -> hasWonState = false;
-}
 
-Player::Player(std::string name, raylib::Texture2D* _texture): PhysicalGameObject(_texture) {
-    this -> size = raylib::Vector2(128, 128);
-    this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
-    this -> name = name;
+    this -> health = 20;
 
-    for(std::string str : this -> items) str = "";
-
-    this -> alive = true;
-    this -> hasWonState = false;
-}
-
-std::string Player::getName() {
-    return this -> name;
+    this -> darknessTexture = _texture_darkness;
 }
 
 bool Player::getAlive() {
@@ -40,8 +32,8 @@ bool Player::getWonState() {
     return this -> items[index];
 }*/
 
-void Player::setName(std::string name) {
-    this -> name = name;
+float Player::getHealth() {
+    return this -> health;
 }
 
 void Player::setAlive(bool alive) {
@@ -52,17 +44,39 @@ void Player::setHasWonState(bool hasWonState) {
     this -> hasWonState = hasWonState;
 }
 
-/*PLACEHOLDER: void Player::setItemByIndex(int index, Item item) {
+void Player::setItemByIndex(int index, std::string item) {
     this -> items[index] = item;
-}*/
+}
 
-/*PLACEHOLDER: void setItemByIndex(Item item, int index) {
+void Player::setItemByIndex(std::string item, int index) {
     this -> items[index] = item;
-}*/
+}
+
+void Player::setHealth(float health) {
+    this -> health = health;
+}
+
+void Player::changeHealth(float healthEffect) {
+    this -> health += healthEffect;
+}
+
+void Player::draw() {
+    GameObject::draw();
+
+    raylib::Vector2 darknessPosition = raylib::Vector2(this -> position) - raylib::Vector2(1536 - 64, 1024 - 64);
+    darknessTexture -> Draw(darknessPosition);
+
+    // this -> collisionShape.Draw({255, 0, 0, 100}); //Debug player collision shape.
+}
 
 void Player::tick() {
+    if(this -> health <= 0) {
+        reset();
+    }
+
     this -> setVelocity(raylib::Vector2(0, 0));
     this -> handleInput();
+    this -> checkTriggers();
 
     this -> setPosition(this -> getPosition() + this -> velocity);
     this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
@@ -73,6 +87,11 @@ void Player::tick() {
 }
 
 void Player::handleInput() {
+    raylib::Vector2 enemyPos = {120, 120};
+    raylib::Vector2 playerPos = {200, 200};
+
+    raylib::Vector2 enemyVelocity = playerPos - enemyPos;
+
     if(raylib::Keyboard::IsKeyDown(KEY_W) || raylib::Keyboard::IsKeyDown(KEY_UP)) {
         this -> setVelocityY(-10);
     } else if(raylib::Keyboard::IsKeyDown(KEY_S) || raylib::Keyboard::IsKeyDown(KEY_DOWN)) {
@@ -86,6 +105,11 @@ void Player::handleInput() {
     }
 }
 
-/*PLACEHOLDER: void grabItem(Item& item) {
-
-}*/
+void Player::checkTriggers() {
+    for (int i = 0; i < numTriggersInWorld; i++) {
+        // Trigger trigger = *(worldTriggers[i]); //Need to make a variable like this to dereference the trigger. Fucking diabolical.
+        if(this -> collisionShape.CheckCollision(worldTriggers[i] -> getCollisionShape())) {
+            worldTriggers[i] -> activate();
+        }
+    }
+}
