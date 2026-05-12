@@ -7,8 +7,9 @@ class Enemy
 {
 public:
 	Enemy();
-	Enemy(raylib::Vector2& playerPosition,Player& player);
-	Enemy(raylib::Vector2& playerPosition, string enemyName,Player& player);
+	Enemy(raylib::Vector2& playerPosition, Player& player);
+	Enemy(raylib::Vector2& playerPosition, string enemyName,Player& player); 
+
 	void status(bool alive);
 	void findPlayer(Vector2 playerPosition);
 	void tick();
@@ -16,24 +17,31 @@ public:
 	void setSpeed(double speed);
 	void setDmg(double dmg);
 	//these are subject to change
-	void setPlayerPosition(int playerPosition);
+	void setPlayerPosition(Vector2 playerPosition);
 	void setEnemyPosition(Vector2 enemyPosition);
+	void setTargetPosition(Vector2 targetPosition);
+
+	
+	Vector2 getEnemyPosition() const;
+	Vector2 getTargetPostion() const;
+	Vector2 getPlayerPostion() const;
 	string getEnemyName() const;
 	double getSpeed() const;
-	double getdmg() const;
+	double getDmg() const;
 	//Also subject to change
-	int getPlayerPosition()const;
+	int getPlayerPosition();
 	double getEnemyPosition();
-	//friend Enemy operator + (const Enemy& v, const Enemy & o);
+	friend bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two);
+	friend Enemy operator + (const Enemy& one, const Enemy & two);
 	//Enemy& operator =(const Enemy& e);
 
 private:
 	Vector2 enemyPosition;
-	Vector2* targetPosition;
-	Vector2* playerPosition;
+	Vector2 targetPosition;
+	Vector2 playerPosition;
 	float speed = 2.0f;//float literal 2.0
 	string EnemyName;
 	double speed;
 	double dmg;
-	Player player&;
+	Player &player;
 };

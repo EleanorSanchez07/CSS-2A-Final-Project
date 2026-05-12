@@ -1,7 +1,7 @@
-#include "../include/raylib/raylib-cpp.hpp"
-#include "Enemy.h"
-#include "Player.hpp"
-#include "Player.cpp"
+#include "./include/raylib/raylib-cpp.hpp"
+#include "./include/Enemy.h"
+#include "../Player.hpp"
+#include "./Player.cpp"
 #include <iostream>
 using namespace std;
 
@@ -11,15 +11,16 @@ Enemy::Enemy()
 	speed = 0.0;
 	dmg = 0.0;
 }
-Enemy::Enemy(raylib::Vector2& playerPosition, Player& player)//pass by reference
+Enemy::Enemy(raylib::Vector2& playerPosition, Player& player)//pass by reference 
 {
-	targetPosition = &playerPosition;
+	targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
 	double targetPosition = 0.0;
 }
 Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player)
 {
 	float playerPosition = 0.0;
 	enemyName = "";
+	&player;
 }
 void Enemy::status(bool alive)
 {
@@ -46,7 +47,7 @@ void Enemy::tick()
 	//updates the object(enemy?) every frame when the position (is position enemy position or player p gets increased by velocity 
 	//{done}
 	int velocity;
-	Enemy object;
+	int object;
 	for (int i = 0; i < velocity; i++)
 	{
 		if (velocity++)
@@ -68,15 +69,19 @@ void Enemy::setDmg(double dmg)
 	this->dmg = dmg;
 }
 //Subject to change or exist
-void Enemy::setPlayerPosition(int playerPosition)
+void Enemy::setPlayerPosition(Vector2 playerPosition)
 {
 	this->playerPosition = playerPosition;
 }
 void Enemy::setEnemyPosition(Vector2 enemyPosition) 
 {
-	this->ememyPosition = enemyPosition;
+	this->enemyPosition = enemyPosition;
 }
-int Enemy::getPlayerPosition() const
+void Enemy::setTargetPosition(Vector2 targetPostion)
+{
+	this->targetPosition = targetPostion;
+}
+Vector2 Enemy::getPlayerPostion() const 
 {
 	return playerPosition;
 }
@@ -84,12 +89,23 @@ string Enemy::getEnemyName() const
 {
 	return EnemyName;
 }
-string Enemy::getSpeed() const
+double Enemy::getSpeed() const
 {
 	return speed;
 }
-string Enemy::getDmg()const
+double Enemy::getDmg() const 
 {
 	return dmg;
 }
+//== operator here
+bool operator ==(const Enemy& one, const Enemy two)
+{
+	return true;
+}
+//+ operator here
+Enemy operator +(const Enemy& one, const Enemy & two) 
+{
+	return two + one;
+}
+//= operator here
 
