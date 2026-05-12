@@ -16,5 +16,14 @@ public:
          raylib::Vector2 position,
          raylib::Texture2D* texture);
 
+    void Tick();
+
+    std::string GetItemName();
+
+    raylib::Vector2 GetItemPosition();
+
+    void SetItemName(std::string);
+    void SetItemPosition(raylib::Vector2 position);
+
     void Draw();
 };
