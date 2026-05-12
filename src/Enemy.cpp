@@ -1,5 +1,5 @@
-#include "../include/raylib/raylib-cpp.hpp"
-#include "Enemy.h"
+#include "./include/raylib/raylib-cpp.hpp"
+#include "./include/Enemy.h"
 #include "Player.hpp"
 #include "Player.cpp"
 #include <iostream>
