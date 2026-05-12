@@ -1,23 +1,20 @@
 #pragma once
 
+#include "include/GameObject.hpp"
 #include <string>
-#include "PhysicalGameObject.h"
-#include "Player.h"
 
-using namespace std;
-
-class Item : public PhysicalGameObject
+class Item : public GameObject
 {
 private:
-    string itemName;
-    bool collected;
+    std::string itemName;
+    raylib::Vector2 itemPosition;
 
 public:
-    Item();
-    Item(string name);
+    Item(raylib::Texture2D* texture);
 
-    void collect(Player& player);
+    Item(std::string name,
+         raylib::Vector2 position,
+         raylib::Texture2D* texture);
 
-    string getName();
-    bool isCollected();
+    void Draw();
 };

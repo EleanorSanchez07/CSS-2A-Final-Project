@@ -1,36 +1,23 @@
 #include "items.h"
 
-Item::Item() : PhysicalGameObject()
+// default constructor
+Item::Item(raylib::Texture2D* texture)
+    : GameObject(texture)
 {
-    itemName = "";
-    collected = false;
 }
 
-Item::Item(string name) : PhysicalGameObject()
+// constructor with values
+Item::Item(std::string name,
+           raylib::Vector2 position,
+           raylib::Texture2D* texture)
+    : GameObject(texture)
 {
     itemName = name;
-    collected = false;
+    itemPosition = position;
 }
 
-string Item::getName()
-{
-    return itemName;
-}
 
-bool Item::isCollected()
+void Item::Draw()
 {
-    return collected;
-}
-
-void Item::collect(Player& player)
-{
-    for (int i = 0; i < 4; i++)
-    {
-        if (player.items[i] == "")
-        {
-            player.items[i] = itemName;
-            collected = true;
-            return;
-        }
-    }
+    
 }
