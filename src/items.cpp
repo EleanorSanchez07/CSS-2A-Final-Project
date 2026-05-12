@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 #include "./include/Items.h"
-=======
-#include "items.h"
 #include <cmath>
->>>>>>> origin/Amanda
 
 // default constructor
 Item::Item(raylib::Texture2D* texture)
