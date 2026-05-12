@@ -12,6 +12,8 @@ class PhysicalGameObject: public GameObject {
         void setVelocityY(double velocity);
         void setCollisionShape(raylib::Rectangle collisionShape);
 
+
+        friend bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two);
         raylib::Vector2 getVelocity();
         raylib::Rectangle getCollisionShape();
     protected:

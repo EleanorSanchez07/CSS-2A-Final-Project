@@ -3,6 +3,7 @@ raylib::Window window(1280, 800, "Untitled Spooky Game");
 
 #include "./include/GameObject.hpp"
 #include "./include/PhysicalGameObject.hpp"
+#include "./include/Room.hpp"
 #include "./include/Trigger.hpp"
 #include "./include/DisplayTextTrigger.hpp"
 #include "./include/Player.hpp"
@@ -25,17 +26,30 @@ std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>()
 
 Player player;
 
+void enterRoom(Room r);
+void leaveRoom(Room& r);
+
+std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
+std::vector<PhysicalGameObject> worldTriggers = std::vector<PhysicalGameObject>();
+std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
+
 int main() {
+
     window.SetExitKey(0);
     
     player = Player(&TEX_PLAYER, &TEX_DARKNESS);
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
 
+
+    //PhysicalGameObject player = PhysicalGameObject(&TEX_PLAYER);
+    //player.setPosition(raylib::Vector2(window.GetWidth() / 2 - player.getSize().x / 2, window.GetHeight() / 2 - player.getSize().y / 2));
     // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
     // numTriggersInWorld++;
 
     raylib::Color background = raylib::Color(0, 0, 0, 255);
     SetTargetFPS(60);
+    loc[0]=3;
+    loc[1]=3;
     
     // Main game loop
     while (!window.ShouldClose()) {   //Check if close button pressed on window.
@@ -44,6 +58,8 @@ int main() {
                 player.tick();
 
                 window.ClearBackground(background);
+                player.tick();
+                demoLevel[loc[0]][loc[1]].tick();
             }
         EndDrawing();
     }
@@ -55,6 +71,23 @@ int main() {
     return 0;
 }
 
+/*
+//no longer needed
+void enterRoom(Room r){
+    // pulls out the vectors
+    worldObstacles = r.Obstacles();
+    worldTriggers = r.Triggers();
+    worldEnemies = r.Enemies();
+}
+void leaveRoom(Room& r){
+    // unsure if this is neccesary
+    // sets the vectors to empty vectors
+    r.setEnemies(worldEnemies);
+    worldObstacles = std::vector<PhysicalGameObject>();
+    worldTriggers = std::vector<PhysicalGameObject>();
+    worldEnemies = std::vector<PhysicalGameObject>();
+}
+*/
 void reset() {
     for(int i = 0; i < numTriggersInWorld; i++) {
         delete worldTriggers[i];
