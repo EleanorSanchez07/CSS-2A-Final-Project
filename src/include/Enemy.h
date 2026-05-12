@@ -24,12 +24,12 @@ public:
 	
 	Vector2 getEnemyPosition() const;
 	Vector2 getTargetPostion() const;
-	Vector2 getPlayerPostion() const;
+	Vector2 getPlayerPosition() const;
 	string getEnemyName() const;
 	double getSpeed() const;
 	double getDmg() const;
 	//Also subject to change
-	int getPlayerPosition();
+	// int getPlayerPosition();
 	double getEnemyPosition();
 	friend bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two);
 	friend Enemy operator + (const Enemy& one, const Enemy & two);

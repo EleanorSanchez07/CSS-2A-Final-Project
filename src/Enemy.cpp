@@ -11,12 +11,12 @@ Enemy::Enemy()
 	speed = 0.0;
 	dmg = 0.0;
 }
-Enemy::Enemy(raylib::Vector2& playerPosition, Player& player)//pass by reference 
+Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player) //pass by reference 
 {
 	targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
 	double targetPosition = 0.0;
 }
-Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player)
+Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player): player(player)
 {
 	float playerPosition = 0.0;
 	enemyName = "";
@@ -81,7 +81,8 @@ void Enemy::setTargetPosition(Vector2 targetPostion)
 {
 	this->targetPosition = targetPostion;
 }
-Vector2 Enemy::getPlayerPostion() const 
+
+Vector2 Enemy::getPlayerPosition() const
 {
 	return playerPosition;
 }

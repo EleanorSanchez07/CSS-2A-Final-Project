@@ -59,6 +59,19 @@ void Player::setHasWonState(bool hasWonState) {
     this -> hasWonState = hasWonState;
 }
 
+void Player::addItemToInventory(std::string item) {
+    for(std::string i : this -> items) {
+        if(i != "") {
+            i = item;
+            return;
+        }
+    }
+
+    std::string message = "Player inventory is full, failed to add an item.";
+    std::cout << message << std::endl;
+    raylib::DrawText(message, 0, 0, 24, {255, 0, 0, 255});
+}
+
 void Player::setItemByIndex(int index, std::string item) {
     this -> items[index] = item;
 }
