@@ -1,6 +1,6 @@
 #pragma once
 
-#include "include/GameObject.hpp"
+#include "GameObject.hpp"
 #include <string>
 
 class Item : public GameObject

@@ -2,9 +2,10 @@
 #include "./include/Trigger.hpp"
 #include "./include/GlobalRefs.hpp"
 
-// Trigger::Trigger(): PhysicalGameObject(&TEX_NOTHING) {
-//     std::cout << "Useless trigger created. This probably isn't helpful" << std::endl;
-// };
+Trigger::Trigger(): PhysicalGameObject(&TEX_NOTHING) {
+    std::cout << "Useless trigger created. This probably isn't helpful" << std::endl;
+};
+
 
 Trigger::Trigger(raylib::Vector2 position, raylib::Vector2 size): PhysicalGameObject(&TEX_NOTHING) {
     this -> position = position;
