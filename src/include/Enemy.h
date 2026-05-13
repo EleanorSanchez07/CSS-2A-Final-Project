@@ -51,8 +51,8 @@ private:
 // 	double speed;
 // 	double dmg;
 // 	Player &player;
+//double speed;
 //=======
-	double speed;
 	double dmg;
 	Player &player;
 //>>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
