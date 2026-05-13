@@ -6,7 +6,7 @@ using namespace std;
 class Enemy
 {
 public:
-	Enemy();
+	//Enemy();
 	Enemy(raylib::Vector2& playerPosition, Player& player);
 	Enemy(raylib::Vector2& playerPosition, string enemyName,Player& player); 
 

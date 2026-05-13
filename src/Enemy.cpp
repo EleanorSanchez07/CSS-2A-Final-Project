@@ -1,16 +1,15 @@
 #include "./include/raylib/raylib-cpp.hpp"
 #include "./include/Enemy.h"
-#include "Player.hpp"
-#include "Player.cpp"
+#include "./include/Player.hpp"
 #include <iostream>
 using namespace std;
 
-Enemy::Enemy()
-{
-	EnemyName = "";
-	speed = 0.0;
-	dmg = 0.0;
-}
+// Enemy::Enemy()
+// {
+// 	EnemyName = "";
+// 	speed = 0.0;
+// 	dmg = 0.0;
+// }
 Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player) //pass by reference 
 {
 	targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
