@@ -35,21 +35,13 @@ public:
 	friend Enemy operator + (const Enemy& one, const Enemy & two);
 	//Enemy& operator =(const Enemy& e);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
+//<<<<<<< HEAD
 private:
 	Vector2 enemyPosition;
 	Vector2 targetPosition;
 	Vector2 playerPosition;
 	float speed = 2.0f;//float literal 2.0
 	string EnemyName;
-<<<<<<< HEAD
-	//double speed;
-	double dmg;
-	Player &player;
-=======
 // private:
 // 	Vector2 enemyPosition;
 // 	Vector2 targetPosition;
@@ -59,10 +51,9 @@ private:
 // 	double speed;
 // 	double dmg;
 // 	Player &player;
->>>>>>> 234ee408347a720dc018d05e14e5829a44342d74
-=======
+//=======
 	double speed;
 	double dmg;
 	Player &player;
->>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
+//>>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
 };

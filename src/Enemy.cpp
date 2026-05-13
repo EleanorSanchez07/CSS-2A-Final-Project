@@ -4,28 +4,21 @@
 #include <iostream>
 using namespace std;
 
-// Enemy::Enemy()
-// {
+//Enemy::Enemy()
+//{
 // 	EnemyName = "";
 // 	speed = 0.0;
 // 	dmg = 0.0;
-// }
+//}
 Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player) //pass by reference 
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
+//<<<<<<< HEAD
 	targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
 	double targetPosition = 0.0;
 }
 Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player): player(player)
 {
-<<<<<<< HEAD
 	playerPosition = 0.0;
-=======
-	float playerPosition = 0.0;
->>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
 	enemyName = "";
 	&player;
 }
@@ -87,15 +80,9 @@ void Enemy::setEnemyPosition(Vector2 enemyPosition)
 void Enemy::setTargetPosition(Vector2 targetPostion)
 {
 	this->targetPosition = targetPostion;
-<<<<<<< HEAD
-=======
-	// targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
-	// double targetPosition = 0.0;
->>>>>>> 234ee408347a720dc018d05e14e5829a44342d74
-=======
->>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
+//=======
+//>>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
 }
-
 Vector2 Enemy::getPlayerPosition() const
 {
 	return playerPosition;
