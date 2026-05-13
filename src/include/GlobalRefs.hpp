@@ -6,7 +6,7 @@
 #include "Trigger.hpp"
 
 extern raylib::Texture2D TEX_PLAYER;
-extern raylib::Texture2D TEST_BG = raylib::Texture2D("resources/image2.png"); //TODO: Needs to be defined in main instead!
+extern raylib::Texture2D TEST_BG;
 
 //create basic templates for room items
 Room demoLevel[6][6];
