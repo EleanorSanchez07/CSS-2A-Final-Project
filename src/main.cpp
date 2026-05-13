@@ -13,7 +13,7 @@ raylib::Window window(1280, 800, "Untitled Spooky Game");
 #include <memory>
 
 raylib::Texture2D TEX_NOTHING = raylib::Texture2D("resources/transparent.png");
-
+raylib::Texture2D TEST_BG = raylib::Texture2D("resources/image2.png");
 raylib::Texture2D TEX_PLAYER = raylib::Texture2D("resources/glep.png");
 raylib::Texture2D TEX_DARKNESS = raylib::Texture2D("resources/darkness.png");
 
