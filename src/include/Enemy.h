@@ -41,7 +41,7 @@ private:
 	Vector2 playerPosition;
 	float speed = 2.0f;//float literal 2.0
 	string EnemyName;
-	double speed;
+	//double speed;
 	double dmg;
 	Player &player;
 };

@@ -17,7 +17,7 @@ Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player) //
 }
 Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player): player(player)
 {
-	float playerPosition = 0.0;
+	playerPosition = 0.0;
 	enemyName = "";
 	&player;
 }
