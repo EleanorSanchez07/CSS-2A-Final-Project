@@ -32,6 +32,8 @@ Player::Player(): PhysicalGameObject(&TEX_PLAYER) {
 
     this -> health = 20;
 
+    this -> texRegionOffset = raylib::Vector2(0, 0);
+
     this -> darknessTexture = &TEX_DARKNESS;
 }
 
@@ -89,7 +91,15 @@ void Player::changeHealth(float healthEffect) {
 }
 
 void Player::draw() {
-    GameObject::draw();
+    // this -> texture -> width = this -> size.x;
+    // this -> texture -> height = this -> size.y;
+
+    raylib::Rectangle regionRect = Rectangle();
+    regionRect.SetSize(128, 120);
+    regionRect.SetPosition(this -> texRegionOffset);
+
+    DrawTextureRec(*this -> texture, regionRect, this -> position, {255, 255, 255, 255});
+    // this -> texture -> DrawRect(this -> position);
 
     raylib::Vector2 darknessPosition = raylib::Vector2(this -> position) - raylib::Vector2(1536 - 64, 1024 - 64);
     darknessTexture -> Draw(darknessPosition);
@@ -121,14 +131,18 @@ void Player::handleInput() {
     raylib::Vector2 enemyVelocity = playerPos - enemyPos;
 
     if(raylib::Keyboard::IsKeyDown(KEY_W) || raylib::Keyboard::IsKeyDown(KEY_UP)) {
+        this -> texRegionOffset.x = 128 * 2;
         this -> setVelocityY(-10);
     } else if(raylib::Keyboard::IsKeyDown(KEY_S) || raylib::Keyboard::IsKeyDown(KEY_DOWN)) {
+        this -> texRegionOffset.x = 128 * 0;
         this -> setVelocityY(10);
     }
 
     if(raylib::Keyboard::IsKeyDown(KEY_A) || raylib::Keyboard::IsKeyDown(KEY_LEFT)) {
+        this -> texRegionOffset.x = 128 * 1;
         this -> setVelocityX(-10);
     } else if(raylib::Keyboard::IsKeyDown(KEY_D) || raylib::Keyboard::IsKeyDown(KEY_RIGHT)) {
+        this -> texRegionOffset.x = 128 * 3;
         this -> setVelocityX(10);
     }
 }

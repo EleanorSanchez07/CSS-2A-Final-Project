@@ -8,7 +8,7 @@
 class Room;
 
 extern raylib::Texture2D TEX_PLAYER;
-extern raylib::Texture2D TEST_BG;
+extern raylib::Texture2D BG;
 
 //create basic templates for room items
 extern Room demoLevel[6][6];

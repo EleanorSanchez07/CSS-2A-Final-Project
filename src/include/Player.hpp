@@ -57,6 +57,7 @@ class Player: public PhysicalGameObject {
         
     private:
         raylib::Texture2D* darknessTexture;
+        raylib::Vector2 texRegionOffset;
         Circle interactionCircle;
         std::string name, items[4];
         bool alive, hasWonState;
