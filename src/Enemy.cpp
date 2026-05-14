@@ -4,20 +4,21 @@
 #include <iostream>
 using namespace std;
 
-// Enemy::Enemy()
-// {
+//Enemy::Enemy()
+//{
 // 	EnemyName = "";
 // 	speed = 0.0;
 // 	dmg = 0.0;
-// }
+//}
 Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player) //pass by reference 
 {
+//<<<<<<< HEAD
 	targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
 	double targetPosition = 0.0;
 }
 Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player): player(player)
 {
-	float playerPosition = 0.0;
+	playerPosition = 0.0;
 	enemyName = "";
 	&player;
 }
@@ -79,8 +80,9 @@ void Enemy::setEnemyPosition(Vector2 enemyPosition)
 void Enemy::setTargetPosition(Vector2 targetPostion)
 {
 	this->targetPosition = targetPostion;
+//=======
+//>>>>>>> 66ed1d14fcb75a09608cf48c45bf32787c6e44f1
 }
-
 Vector2 Enemy::getPlayerPosition() const
 {
 	return playerPosition;

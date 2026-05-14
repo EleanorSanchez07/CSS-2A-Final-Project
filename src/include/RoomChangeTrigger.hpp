@@ -1,7 +1,7 @@
 #pragma once
 #include "Trigger.hpp"
 #include "Room.hpp"
-#include "./include/GlobalRefs.hpp"
+#include "./GlobalRefs.hpp"
 
 class RoomChangeTrigger : public Trigger{
     public:
