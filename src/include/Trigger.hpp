@@ -7,4 +7,5 @@ class Trigger: public PhysicalGameObject {
         Trigger(raylib::Vector2 position, raylib::Vector2 size);
         
         virtual void activate();
+        void tick();
 };

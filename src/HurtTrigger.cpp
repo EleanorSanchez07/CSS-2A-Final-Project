@@ -1,7 +1,7 @@
 #include <iostream>
 #include "./include/HurtTrigger.hpp"
 
-HurtTrigger::HurtTrigger(raylib::Vector2 position, raylib::Vector2 size, int healthEffect, Player& player): player(player), Trigger(position, size) {
+HurtTrigger::HurtTrigger(raylib::Vector2 position, raylib::Vector2 size, int healthEffect, Player* player): player(*player), Trigger(position, size) {
     this -> healthEffect = healthEffect;
 }
 

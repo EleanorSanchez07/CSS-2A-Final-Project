@@ -7,11 +7,11 @@ Room::Room(){
 }
 
 Room::Room(/*vector<PhysicalGameObject> worldObstacles, RoomChangeTrigger *wt[4],*/ 
-vector<Enemy> worldEnemies, vector<Item> worldObjects){
+vector<Enemy>& worldEnemies, vector<Item> worldObjects){
     exists = true;
     //this->worldObstacles = worldObstacles;
     //setWorldTriggers(wt);
-    this->worldEnemies = worldEnemies;
+    this->worldEnemies = &worldEnemies;
     this->worldObjects = worldObjects;
 
     playerPos = raylib::Vector2(0, 0);
@@ -31,7 +31,7 @@ void Room::addObstacle(PhysicalGameObject ob){
 */
 
 void Room::addEnemy(Enemy en){
-    worldEnemies.push_back(en);
+    worldEnemies -> push_back(en);
 }
 
 /*
@@ -45,8 +45,8 @@ std::vector<Item> Room::Objects(){
 }
 
 
-std::vector<Enemy> Room::Enemies(){
-    return worldEnemies;
+std::vector<Enemy>& Room::Enemies(){
+    return *this -> worldEnemies;
 }
 
 void Room::setPlayerPosition(raylib::Vector2 pPos){
@@ -59,8 +59,8 @@ void Room::tick(){
         ob.tick();
     }
     */
-    for(Enemy ob : worldEnemies){
-        ob.tick();
+    for(int i = 0; i < Enemies().size(); i++){
+       (Enemies())[i].tick();
     }
     for(Item ob : worldObjects){
         //ob.tick();

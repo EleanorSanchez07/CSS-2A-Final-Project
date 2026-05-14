@@ -31,7 +31,7 @@ Player::Player(): PhysicalGameObject(&TEX_PLAYER) {
     this -> alive = true;
     this -> hasWonState = false;
 
-    this -> health = 20;
+    this -> health = 500;
 
     this -> texRegionOffset = raylib::Vector2(0, 0);
 
@@ -109,7 +109,9 @@ void Player::draw() {
 }
 
 void Player::tick() {
+    std::cout << this -> health << std::endl;
     if(this -> health <= 0) {
+        std::cout << "FAH" << std::endl;
         reset();
     }
 

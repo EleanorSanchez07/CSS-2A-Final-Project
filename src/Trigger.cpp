@@ -14,6 +14,13 @@ Trigger::Trigger(raylib::Vector2 position, raylib::Vector2 size): PhysicalGameOb
     this -> collisionShape = raylib::Rectangle(this -> position, this -> size);
 };
 
+void Trigger::tick() {
+    PhysicalGameObject::tick();
+
+    // this -> collisionShape.SetPosition(this -> position);
+    this -> setCollisionShape({this -> position, this -> size});
+}
+
 void Trigger::activate() {
     std::cout << "Base trigger class used." << std::endl;
 }

@@ -19,7 +19,7 @@ Room demoLevel[6][6] = {
     {Room(), Room(), Room(), Room(), Room(), Room()},
     {Room(), Room(), Room(), Room(), Room(), Room()},
     {Room(), Room(), Room(), Room(), Room(), Room()},
-    {Room(), Room(), Room(worldEnemies, worldItems), Room(), Room(), Room()},
+    {Room(), Room(), Room(), Room(), Room(), Room()},
     {Room(), Room(), Room(), Room(), Room(), Room()},
     {Room(), Room(), Room(), Room(), Room(), Room()}
 };
@@ -64,7 +64,7 @@ int main() {
     loc[0]=3;
     loc[1]=3;
     
-    Enemy testEnemy = Enemy(player.getPositionReference(), player);
+    Enemy testEnemy = Enemy(&player.getPositionReference(), &player, &TEX_ENEMY);
     worldEnemies.push_back(testEnemy);
 
     PhysicalGameObject topBound = PhysicalGameObject(&TEX_NOTHING);
@@ -92,13 +92,13 @@ int main() {
             { //empty scope between begin and end draw; makes code prettier :3
                 BG.Draw();
 
-                player.tick();
                 demoLevel[loc[0]][loc[1]].tick();
+                // worldEnemies[0].tick();
+                player.tick();
 
                 // for(int i = 0; i < worldObstacles.size(); i++) worldObstacles[i].getCollisionShape().Draw({255, 0, 0, 255});
 
                 window.ClearBackground(background);
-                demoLevel[loc[0]][loc[1]].tick();
             }
         EndDrawing();
     }
@@ -134,12 +134,17 @@ void reset() {
     numTriggersInWorld = 0;
 
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
-    player.setHealth(10);
+    player.setHealth(500);
     worldObstacles = std::vector<PhysicalGameObject>();
-    numTriggersInWorld = 0;
+    
     worldItems = std::vector<Item>();
     worldEnemies = std::vector<Enemy>();
     
+    // testEnemy = Enemy(&player.getPositionReference(), &player, &TEX_ENEMY);
+    worldEnemies.push_back(Enemy(&player.getPositionReference(), &player, &TEX_ENEMY));
+    
+    demoLevel[3][3] = Room(worldEnemies, worldItems);
+
     // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
     // numTriggersInWorld++;
 }

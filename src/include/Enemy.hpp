@@ -1,14 +1,16 @@
 #pragma once
 #include <string>
 #include "Player.hpp"
-#include "../include/raylib/raylib-cpp.hpp"
+#include "./GlobalRefs.hpp"
+#include "./HurtTrigger.hpp"
+#include "./raylib/raylib-cpp.hpp"
 using namespace std;
 class Enemy
 {
 public:
 	//Enemy();
-	Enemy(raylib::Vector2& playerPosition, Player& player);
-	Enemy(raylib::Vector2& playerPosition, string enemyName,Player& player); 
+	Enemy(raylib::Vector2* playerPosition, Player* player, raylib::Texture2D* texture);
+	Enemy(raylib::Vector2* playerPosition, string enemyName,Player* player, raylib::Texture2D* texture); 
 
 	void status(bool alive);
 	void findPlayer(Vector2 playerPosition);
@@ -20,7 +22,6 @@ public:
 	void setPlayerPosition(Vector2 playerPosition);
 	void setEnemyPosition(Vector2 enemyPosition);
 	void setTargetPosition(Vector2 targetPosition);
-
 	
 	Vector2 getEnemyPosition() const;
 	Vector2 getTargetPostion() const;
@@ -38,12 +39,14 @@ public:
 private:
 	raylib::Vector2 enemyPosition;
 	raylib::Vector2 enemySize;
-	raylib::Vector2 targetPosition;
+	// raylib::Vector2& targetPosition;
 	raylib::Vector2& playerPosition;
 	float speed = 2.0f;//float literal 2.0
 	string EnemyName;
 
 	double dmg;
-	Player player;
+	Player& player;
 	raylib::Texture2D* texture;
+
+	HurtTrigger enemyTrigger = HurtTrigger(enemyPosition, enemySize, -30, &player);
 };

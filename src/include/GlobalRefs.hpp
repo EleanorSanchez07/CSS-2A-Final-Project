@@ -3,11 +3,12 @@
 #include "raylib/raylib-cpp.hpp"
 // #include "Room.hpp"
 #include "PhysicalGameObject.hpp"
-#include "Enemy.hpp"
+// #include "Enemy.hpp"
 #include "Items.hpp"
 #include "Trigger.hpp"
 
 class Room;
+class Enemy;
 
 extern raylib::Texture2D TEX_PLAYER;
 extern raylib::Texture2D TEX_ENEMY;
