@@ -16,7 +16,7 @@ const int lWidth = 6;
 const int lHeight = 6;
 
 // set up rooms
-int loc[2];
+extern int loc[2];
 
 extern raylib::Texture2D TEX_NOTHING;
 

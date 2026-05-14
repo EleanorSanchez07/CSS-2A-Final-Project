@@ -12,6 +12,9 @@ raylib::Window window(1280, 800, "Untitled Spooky Game");
 #include <iostream>
 #include <memory>
 
+int loc[2] = {};
+Room demoLevel[6][6] = {};
+
 raylib::Texture2D TEX_NOTHING = raylib::Texture2D("resources/transparent.png");
 raylib::Texture2D TEST_BG = raylib::Texture2D("resources/image2.png");
 raylib::Texture2D TEX_PLAYER = raylib::Texture2D("resources/glep.png");
@@ -42,6 +45,7 @@ int main() {
     // numTriggersInWorld++;
 
     raylib::Color background = raylib::Color(0, 0, 0, 255);
+    
     SetTargetFPS(60);
     loc[0]=3;
     loc[1]=3;
@@ -90,9 +94,9 @@ void reset() {
 
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
     player.setHealth(10);
-    worldObstacles = std::vector<PhysicalGameObject>();
+    _worldObstacles = std::vector<PhysicalGameObject>();
     numTriggersInWorld = 0;
-    worldEnemies = std::vector<PhysicalGameObject>();
+    _worldEnemies = std::vector<PhysicalGameObject>();
     
     // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
     // numTriggersInWorld++;
