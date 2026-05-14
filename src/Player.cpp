@@ -135,7 +135,6 @@ void Player::handleInput() {
 
 void Player::checkTriggers() {
     for (int i = 0; i < numTriggersInWorld; i++) {
-        // Trigger trigger = *(worldTriggers[i]); //Need to make a variable like this to dereference the trigger. Fucking diabolical.
         if(this -> collisionShape.CheckCollision(worldTriggers[i] -> getCollisionShape())) {
             worldTriggers[i] -> activate();
         }

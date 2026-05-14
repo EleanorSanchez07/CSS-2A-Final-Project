@@ -23,6 +23,7 @@ raylib::Texture2D TEX_DARKNESS = raylib::Texture2D("resources/darkness.png");
 std::vector<PhysicalGameObject> _worldObstacles = std::vector<PhysicalGameObject>();
 
 int numTriggersInWorld = 0;
+Trigger* worldTriggers[maxTriggersInWorld] = {};
 Trigger* _worldTriggers[maxTriggersInWorld];
 
 std::vector<PhysicalGameObject> _worldEnemies = std::vector<PhysicalGameObject>();
