@@ -8,6 +8,7 @@ class RoomChangeTrigger : public Trigger{
         RoomChangeTrigger();
         RoomChangeTrigger(int direction, string message);
         virtual void activate();
+        void reload();
     private:
         int direction;
         string message;
