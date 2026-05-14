@@ -52,6 +52,7 @@ class Player: public PhysicalGameObject {
 
         void tick();
         void checkTriggers();
+        void checkObstacles();
         void handleInput();
         void draw();
         

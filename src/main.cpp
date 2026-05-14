@@ -20,13 +20,13 @@ raylib::Texture2D BG = raylib::Texture2D("resources/background.png");
 raylib::Texture2D TEX_PLAYER = raylib::Texture2D("resources/playerSheet.png");
 raylib::Texture2D TEX_DARKNESS = raylib::Texture2D("resources/darkness.png");
 
-std::vector<PhysicalGameObject> _worldObstacles = std::vector<PhysicalGameObject>();
+std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
 
 int numTriggersInWorld = 0;
 Trigger* worldTriggers[maxTriggersInWorld] = {};
 Trigger* _worldTriggers[maxTriggersInWorld];
 
-std::vector<PhysicalGameObject> _worldEnemies = std::vector<PhysicalGameObject>();
+std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
 
 Player player;
 
@@ -51,6 +51,23 @@ int main() {
     loc[0]=3;
     loc[1]=3;
     
+    PhysicalGameObject topBound = PhysicalGameObject(&TEX_NOTHING);
+    topBound.setCollisionShape({0, 0, 1280, 100});
+
+    PhysicalGameObject bottomBound = PhysicalGameObject(&TEX_NOTHING);
+    bottomBound.setCollisionShape({0, 700, 1280, 100});
+
+    PhysicalGameObject leftBound = PhysicalGameObject(&TEX_NOTHING);
+    leftBound.setCollisionShape({0, 0, 100, 800});
+
+    PhysicalGameObject rightBound = PhysicalGameObject(&TEX_NOTHING);
+    rightBound.setCollisionShape({1180, 0, 100, 800});
+
+    worldObstacles.push_back(topBound);
+    worldObstacles.push_back(bottomBound);
+    worldObstacles.push_back(leftBound);
+    worldObstacles.push_back(rightBound);
+
     // Main game loop
     while (!window.ShouldClose()) {   //Check if close button pressed on window.
         BeginDrawing();
@@ -58,6 +75,8 @@ int main() {
                 BG.Draw();
 
                 player.tick();
+
+                // for(int i = 0; i < worldObstacles.size(); i++) worldObstacles[i].getCollisionShape().Draw({255, 0, 0, 255});
 
                 window.ClearBackground(background);
                 demoLevel[loc[0]][loc[1]].tick();
@@ -97,9 +116,9 @@ void reset() {
 
     player.setPosition(window.GetSize() / 2 - player.getSize() / 2);
     player.setHealth(10);
-    _worldObstacles = std::vector<PhysicalGameObject>();
+    worldObstacles = std::vector<PhysicalGameObject>();
     numTriggersInWorld = 0;
-    _worldEnemies = std::vector<PhysicalGameObject>();
+    worldEnemies = std::vector<PhysicalGameObject>();
     
     // worldTriggers[numTriggersInWorld] = new DisplayTextTrigger({0, 300}, {128, 128}, "Hello World");
     // numTriggersInWorld++;

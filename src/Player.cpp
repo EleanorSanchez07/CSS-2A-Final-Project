@@ -1,5 +1,6 @@
 #include <iostream>
 #include <typeinfo>
+#include <string>
 #include "./include/GlobalRefs.hpp"
 #include "./include/Player.hpp"
 
@@ -115,8 +116,10 @@ void Player::tick() {
     this -> setVelocity(raylib::Vector2(0, 0));
     this -> handleInput();
     this -> checkTriggers();
-
+    
+    // this -> checkObstacles();
     this -> setPosition(this -> getPosition() + this -> velocity);
+    
     this -> interactionCircle = Circle(this -> position + this -> size / 2, INTERACTION_RADIUS);
     this -> collisionShape.SetPosition(this -> getPosition());
 
@@ -125,11 +128,6 @@ void Player::tick() {
 }
 
 void Player::handleInput() {
-    raylib::Vector2 enemyPos = {120, 120};
-    raylib::Vector2 playerPos = {200, 200};
-
-    raylib::Vector2 enemyVelocity = playerPos - enemyPos;
-
     if(raylib::Keyboard::IsKeyDown(KEY_W) || raylib::Keyboard::IsKeyDown(KEY_UP)) {
         this -> texRegionOffset.x = 128 * 2;
         this -> setVelocityY(-10);
@@ -151,6 +149,32 @@ void Player::checkTriggers() {
     for (int i = 0; i < numTriggersInWorld; i++) {
         if(this -> collisionShape.CheckCollision(worldTriggers[i] -> getCollisionShape())) {
             worldTriggers[i] -> activate();
+        }
+    }
+}
+
+void Player::checkObstacles() {
+    for(int i = 0; i < worldObstacles.size(); i++) {
+        std::cout << worldObstacles.size() << std::endl;
+
+        PhysicalGameObject other = worldObstacles[i];
+        if(this -> collisionShape.CheckCollision(other.getCollisionShape())) {
+            raylib::Vector2 otherCenter = other.getPosition() + other.getSize() / 2;
+            raylib::Vector2 thisCenter = this -> getPosition() + this -> getSize() / 2;
+
+            bool collidingUp = thisCenter.y > otherCenter.y && this -> getVelocity().y < 0;
+            bool collidingDown = thisCenter.y < otherCenter.y && this -> getVelocity().y > 0;
+            // bool collidingRight = thisCenter.x < otherCenter.x && this -> getVelocity().x > 0;
+            // bool collidingLeft = thisCenter.x > otherCenter.x && this -> getVelocity().x < 0;
+
+            if(collidingDown) {
+                std::cout << "FAH" << std::endl;
+                this -> setVelocityY(0);
+            }
+
+            // if(collidingRight || collidingLeft) {
+            //     this -> setVelocityX(0);
+            // }
         }
     }
 }
