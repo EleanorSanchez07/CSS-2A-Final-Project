@@ -17,21 +17,17 @@ raylib::Texture2D TEST_BG = raylib::Texture2D("resources/image2.png");
 raylib::Texture2D TEX_PLAYER = raylib::Texture2D("resources/glep.png");
 raylib::Texture2D TEX_DARKNESS = raylib::Texture2D("resources/darkness.png");
 
-std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
+std::vector<PhysicalGameObject> _worldObstacles = std::vector<PhysicalGameObject>();
 
 int numTriggersInWorld = 0;
-Trigger* worldTriggers[maxTriggersInWorld];
+Trigger* _worldTriggers[maxTriggersInWorld];
 
-std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
+std::vector<PhysicalGameObject> _worldEnemies = std::vector<PhysicalGameObject>();
 
 Player player;
 
-void enterRoom(Room r);
-void leaveRoom(Room& r);
-
-std::vector<PhysicalGameObject> worldObstacles = std::vector<PhysicalGameObject>();
-std::vector<PhysicalGameObject> worldTriggers = std::vector<PhysicalGameObject>();
-std::vector<PhysicalGameObject> worldEnemies = std::vector<PhysicalGameObject>();
+// void enterRoom(Room r);
+// void leaveRoom(Room& r);
 
 int main() {
 
@@ -63,7 +59,7 @@ int main() {
     }
     
     for(int i = 0; i < numTriggersInWorld; i++) {
-        delete worldTriggers[i];
+        delete _worldTriggers[i];
     }
 
     return 0;
@@ -88,7 +84,7 @@ void leaveRoom(Room& r){
 */
 void reset() {
     for(int i = 0; i < numTriggersInWorld; i++) {
-        delete worldTriggers[i];
+        delete _worldTriggers[i];
     }
     numTriggersInWorld = 0;
 
