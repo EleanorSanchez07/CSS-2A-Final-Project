@@ -7,6 +7,8 @@
 #include <vector>
 using namespace std;
 
+class RoomChangeTrigger;
+
 class Room{
     public:
         Room();
@@ -17,7 +19,7 @@ class Room{
         std::vector<PhysicalGameObject> Obstacles();
         RoomChangeTrigger** Triggers();
         std::vector<Enemy> Enemies();
-        raylib::Vector2 setPlayerPosition(raylib::Vector2 pPos);
+        void setPlayerPosition(raylib::Vector2 pPos);
         void tick();
         bool Exists();
         void removeEnemy(Enemy en);
