@@ -58,7 +58,10 @@ endif
 .PHONY: all setup submodules execute clean
 
 # Default target, compiles, executes and cleans
-all: $(target) execute #clean
+# all: $(target) execute #clean
+
+# Version that doesn't clean up. Little bit faster subsequent compilations. -Eleanor
+all: $(target) execute
 
 # Sets up the project for compiling, generates includes and libs
 setup: include lib
