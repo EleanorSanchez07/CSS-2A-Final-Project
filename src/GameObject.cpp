@@ -10,6 +10,10 @@ raylib::Vector2 GameObject::getPosition() {
     return this -> position;
 }
 
+raylib::Vector2& GameObject::getPositionReference() {
+    return this -> position;
+}
+
 raylib::Vector2 GameObject::getSize() {
     return this -> size;
 }

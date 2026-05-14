@@ -7,6 +7,7 @@ class GameObject {
         // GameObject& operator = (GameObject& gameObject);
 
         raylib::Vector2 getPosition();
+        raylib::Vector2& getPositionReference();
         raylib::Vector2 getSize();
 
         void setPosition(raylib::Vector2 position);

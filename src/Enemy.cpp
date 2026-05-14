@@ -1,6 +1,7 @@
 #include "./include/raylib/raylib-cpp.hpp"
 #include "./include/Enemy.hpp"
 #include "./include/Player.hpp"
+#include "./include/GlobalRefs.hpp"
 #include <iostream>
 using namespace std;
 
@@ -10,15 +11,21 @@ using namespace std;
 // 	speed = 0.0;
 // 	dmg = 0.0;
 //}
-Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player) //pass by reference 
+Enemy::Enemy(raylib::Vector2& playerPosition, Player& player): player(player), playerPosition(playerPosition) //pass by reference 
 {
 //<<<<<<< HEAD
+	enemyPosition = raylib::Vector2(400, 0);
+	enemySize = raylib::Vector2(100, 100);
+	this -> texture = &TEX_ENEMY;
 	targetPosition = playerPosition; //throws error because it can't assign an object of Vector2 to raylib::Vector2
 	double targetPosition = 0.0;
 }
-Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player): player(player)
+Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player): player(player), playerPosition(playerPosition)
 {
-	playerPosition = 0.0;
+	enemyPosition = raylib::Vector2(0, 0);
+	enemySize = raylib::Vector2(100, 100);
+	this -> texture = &TEX_ENEMY;
+	// playerPosition = 0.0;
 	enemyName = "";
 	// &player;
 }
@@ -46,15 +53,22 @@ void Enemy::tick()
 {
 	//updates the object(enemy?) every frame when the position (is position enemy position or player p gets increased by velocity 
 	//{done}
-	int velocity;
-	int object;
-	for (int i = 0; i < velocity; i++)
-	{
-		if (velocity++)
-		{
-			object = object + 1;
-		}
-	}
+	// int velocity;
+	// int object;
+	// for (int i = 0; i < velocity; i++)
+	// {
+	// 	if (velocity++)
+	// 	{
+	// 		object = object + 1;
+	// 	}
+	// }
+
+	raylib::Vector2 velocity = (&targetPosition - &enemyPosition);
+	velocity = velocity.Normalize() * 8;
+
+	this -> enemyPosition += velocity;
+
+	this -> texture -> Draw(this -> enemyPosition);
 }
 void Enemy::setEnemyName(string EnemyName)
 {

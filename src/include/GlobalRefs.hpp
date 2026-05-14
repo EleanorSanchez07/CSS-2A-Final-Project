@@ -3,11 +3,14 @@
 #include "raylib/raylib-cpp.hpp"
 // #include "Room.hpp"
 #include "PhysicalGameObject.hpp"
+#include "Enemy.hpp"
+#include "Items.hpp"
 #include "Trigger.hpp"
 
 class Room;
 
 extern raylib::Texture2D TEX_PLAYER;
+extern raylib::Texture2D TEX_ENEMY;
 extern raylib::Texture2D BG;
 
 //create basic templates for room items
@@ -29,6 +32,7 @@ const int maxTriggersInWorld = 20;
 extern int numTriggersInWorld;
 extern Trigger* worldTriggers[maxTriggersInWorld];
 
-extern std::vector<PhysicalGameObject> worldEnemies;
+extern std::vector<Item> worldItems;
+extern std::vector<Enemy> worldEnemies;
 
 extern void reset();

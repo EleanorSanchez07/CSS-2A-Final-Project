@@ -1,5 +1,5 @@
 #pragma once
-#include<string>
+#include <string>
 #include "Player.hpp"
 #include "../include/raylib/raylib-cpp.hpp"
 using namespace std;
@@ -33,15 +33,17 @@ public:
 	double getEnemyPosition();
 	// friend bool operator ==(const PhysicalGameObject& one, const PhysicalGameObject two);
 	// friend Enemy operator + (const Enemy& one, const Enemy & two);
-	//Enemy& operator =(const Enemy& e);
+	// Enemy& operator =(const Enemy& e);
 
 private:
-	Vector2 enemyPosition;
-	Vector2 targetPosition;
-	Vector2 playerPosition;
+	raylib::Vector2 enemyPosition;
+	raylib::Vector2 enemySize;
+	raylib::Vector2 targetPosition;
+	raylib::Vector2& playerPosition;
 	float speed = 2.0f;//float literal 2.0
 	string EnemyName;
 
 	double dmg;
 	Player player;
+	raylib::Texture2D* texture;
 };
