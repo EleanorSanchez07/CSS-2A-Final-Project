@@ -1,5 +1,5 @@
 #include "./include/raylib/raylib-cpp.hpp"
-#include "./include/Enemy.h"
+#include "./include/Enemy.hpp"
 #include "./include/Player.hpp"
 #include <iostream>
 using namespace std;
@@ -20,7 +20,7 @@ Enemy::Enemy(raylib::Vector2& playerPosition, string enemyName, Player& player):
 {
 	playerPosition = 0.0;
 	enemyName = "";
-	&player;
+	// &player;
 }
 void Enemy::status(bool alive)
 {
@@ -99,15 +99,15 @@ double Enemy::getDmg() const
 {
 	return dmg;
 }
-//== operator here
-bool operator ==(const Enemy& one, const Enemy two)
-{
-	return true;
-}
-//+ operator here
-Enemy operator +(const Enemy& one, const Enemy & two) 
-{
-	return two + one;
-}
-//= operator here
+// //== operator here
+// bool operator ==(const Enemy& one, const Enemy two)
+// {
+// 	return true;
+// }
+// //+ operator here
+// Enemy operator +(const Enemy& one, const Enemy & two) 
+// {
+// 	return two + one;
+// }
+// //= operator here
 

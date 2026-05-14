@@ -1,5 +1,5 @@
 #pragma once
-#include "Items.h"
+#include "Items.hpp"
 #include "Trigger.hpp"
 
 class ItemTrigger: public Trigger {

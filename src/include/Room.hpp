@@ -2,10 +2,12 @@
 #include "raylib/raylib-cpp.hpp"
 #include "PhysicalGameObject.hpp"
 #include "RoomChangeTrigger.hpp"
-#include "Items.h"
-#include "Enemy.h"
+#include "Items.hpp"
+#include "Enemy.hpp"
 #include <vector>
 using namespace std;
+
+class RoomChangeTrigger;
 
 class Room{
     public:
@@ -17,7 +19,7 @@ class Room{
         std::vector<PhysicalGameObject> Obstacles();
         std::vector<Item> Objects();
         std::vector<Enemy> Enemies();
-        raylib::Vector2 setPlayerPosition(raylib::Vector2 pPos);
+        void setPlayerPosition(raylib::Vector2 pPos);
         void tick();
         bool Exists();
         //void removeEnemy(Enemy en);

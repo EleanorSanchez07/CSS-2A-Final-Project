@@ -1,4 +1,4 @@
-#include "Room.hpp"
+#include "./include/Room.hpp"
 using namespace std;
 
 Room::Room(){
@@ -46,7 +46,7 @@ std::vector<Enemy> Room::Enemies(){
     return worldEnemies;
 }
 
-raylib::Vector2 Room::setPlayerPosition(raylib::Vector2 pPos){
+void Room::setPlayerPosition(raylib::Vector2 pPos){
     playerPos = pPos;
 }
 
@@ -66,7 +66,8 @@ void Room::tick(){
 void Room::removeEnemy(Enemy en){
     for (std::vector<Enemy>::iterator it = worldEnemies.begin(); it != worldEnemies.end();)
     {
-        if (*it == en)
+        // if (*it == en)
+        if(true)
             it = worldEnemies.erase(it);
     }
 }

@@ -1,4 +1,4 @@
-#include "include/RoomChangeTrigger.hpp"
+#include "./include/RoomChangeTrigger.hpp"
 #include <iostream>
 
 RoomChangeTrigger::RoomChangeTrigger(){

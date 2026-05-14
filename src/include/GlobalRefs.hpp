@@ -1,20 +1,22 @@
 #pragma once
 #include <memory>
 #include "raylib/raylib-cpp.hpp"
-#include "Room.hpp"
+// #include "Room.hpp"
 #include "PhysicalGameObject.hpp"
 #include "Trigger.hpp"
 
+class Room;
+
 extern raylib::Texture2D TEX_PLAYER;
-extern raylib::Texture2D TEST_BG;
+extern raylib::Texture2D BG;
 
 //create basic templates for room items
-Room demoLevel[6][6];
-int lWidth = 6;
-int lHeight = 6;
+extern Room demoLevel[6][6];
+const int lWidth = 6;
+const int lHeight = 6;
 
 // set up rooms
-int loc[2];
+extern int loc[2];
 
 extern raylib::Texture2D TEX_NOTHING;
 

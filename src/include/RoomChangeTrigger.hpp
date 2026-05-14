@@ -6,11 +6,11 @@
 class RoomChangeTrigger : public Trigger{
     public:
         RoomChangeTrigger();
-        RoomChangeTrigger(int direction, string message);
+        RoomChangeTrigger(int direction, std::string message);
         virtual void activate();
         void reload();
     private:
         int direction;
-        string message;
+        std::string message;
 
 };
